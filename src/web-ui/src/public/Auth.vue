@@ -48,6 +48,12 @@ export default {
               type: 'string',
               required: true
             },
+            {
+              label: 'IP address (Fraud Detection)',
+              key: 'custom:signup_ip_address',
+              type: 'string',
+              required: true
+            },
           ]
         }
       }
