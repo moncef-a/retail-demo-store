@@ -53,7 +53,7 @@ export default {
               key: 'custom:signup_ip_address',
               type: 'string',
               required: true
-            },
+            }
           ]
         }
       }
@@ -70,7 +70,14 @@ export default {
       } else {
         this.showingSignUp = newVal.showSignUp
       }
-    })
+    });
+	this.$nextTick(function () {
+		fetch('https://api.ipify.org?format=json')
+		   .then(x => x.json())
+		   .then(({ ip }) => {
+				document.querySelectorAll("div[signupfield='custom:signup_ip_address']")[0].querySelector("input").value = ip;
+				});
+		})
   },
   watch: {
     $route: {
