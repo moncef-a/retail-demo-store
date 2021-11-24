@@ -59,7 +59,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.$refs.authenticator.$watch('displayMap', (newVal) => {
       // since the first displayMap update happens asynchronously on mount,
       // it may not have picked up the authState emit below. So in the
@@ -77,7 +77,7 @@ export default {
 		   .then(({ ip }) => {
 				document.querySelectorAll("div[signupfield='custom:signup_ip_address']")[0].querySelector("input").value = ip;
 				});
-		})
+	});
   },
   watch: {
     $route: {
