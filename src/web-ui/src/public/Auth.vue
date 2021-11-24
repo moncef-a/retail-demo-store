@@ -71,13 +71,13 @@ export default {
         this.showingSignUp = newVal.showSignUp
       }
     });
-    this.$nextTick(function () {
+    /*this.$nextTick(function () {
       fetch('https://api.ipify.org?format=json')
         .then(x => x.json())
         .then(({ ip }) => {
           document.querySelectorAll("div[signupfield='custom:signup_ip_address']")[0].querySelector("input").value = ip;
         });
-    });
+    });*/
   },
   watch: {
     $route: {
@@ -89,6 +89,9 @@ export default {
       }
     }
   }
+  AmplifyEventBus.$on('authState', info => {
+    console.log(`Here is the auth event that was just emitted by an Amplify component: ${info}`)
+  });
 }
 </script>
 
