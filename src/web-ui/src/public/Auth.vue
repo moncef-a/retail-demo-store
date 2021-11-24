@@ -60,6 +60,9 @@ export default {
     }
   },
   mounted () {
+    AmplifyEventBus.$on('authState', info => {
+      console.log(`Here is the auth event that was just emitted by an Amplify component: ${info}`)
+    });
     this.$refs.authenticator.$watch('displayMap', (newVal) => {
       // since the first displayMap update happens asynchronously on mount,
       // it may not have picked up the authState emit below. So in the
@@ -89,9 +92,6 @@ export default {
       }
     }
   }
-  AmplifyEventBus.$on('authState', info => {
-    console.log(`Here is the auth event that was just emitted by an Amplify component: ${info}`)
-  });
 }
 </script>
 
