@@ -61,7 +61,14 @@ export default {
   },
   mounted () {
     AmplifyEventBus.$on('authState', info => {
-      console.log(`Here is the auth event that was just emitted by an Amplify component: ${info}`)
+      if (info === 'signUp') {
+        console.log(`Signup state is ${info} so defaulting the IP address`)
+        fetch('https://api.ipify.org?format=json')
+          .then(x => x.json())
+          .then(({ ip }) => {
+            document.querySelectorAll("div[signupfield='custom:signup_ip_address']")[0].querySelector("input").value = ip;
+          });	  
+      }
     });
     this.$refs.authenticator.$watch('displayMap', (newVal) => {
       // since the first displayMap update happens asynchronously on mount,
